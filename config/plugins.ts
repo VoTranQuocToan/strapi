@@ -2,14 +2,13 @@ import type { Core } from '@strapi/strapi';
 
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({});
 
-export default ({ env }) => ({
-    i18n: {
+export default ({ env }: { env: any }) => ({
+    'strapi-llm-translator': {
       enabled: true,
       config: {
-        ai: {
-          enabled: true,
-          provider: 'openai',
-        },
+        apiUrl: 'https://api.groq.com/openai/v1', // Groq tương thích OpenAI API
+        apiKey: env('GROQ_API_KEY'),
+        model: 'llama-3.3-70b-versatile', // miễn phí
       },
     },
   });
